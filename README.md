@@ -61,3 +61,38 @@ yarn cli -n cat-a103ca57 -w bc1pkxvkymgm0wchrr5s4fqrd8vepghquctuwvj92gd8q7vs2pdr
 }
 ```
 
+## Commands for nodeBlockVerify
+
+### Show Usage
+```shell
+yarn verify -h 
+
+Usage: nodeblock [options]
+
+Fractal-Bitcoin Tracker Node BlockHeight Check
+
+Options:
+  -V, --version             output the version number
+  -f, --file [RpcNode IPs]  RpcNodeIPs file, only IP
+  -r, --rpc [RPC Node IP]   Rpc IP only
+  -h, --help                display help for command
+```
+
+### Check from RPC Nodes File
+```txt
+jrpc.txt must only contains ip
+
+example:
+    127.0.0.1
+    1.x.x.x
+```
+```shell
+yarn verify -f jrpc.txt
+```
+
+### Check for RPC Node
+```shell
+yarn verify -r 127.0.0.1
+```
+
+
