@@ -6,7 +6,8 @@
     "node-fetch": "^3.3.2"
   },
   "scripts": {
-    "cli": "node src/approve.js"
+    "cli": "node src/approve.js",
+    "verify": "node src/nodeblock.js"
   },
   "license": "MIT"
 }
