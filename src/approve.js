@@ -7,6 +7,10 @@ import importdescriptors from "./service/importdescriptors.js";
 
 async function bootstrap() {
     const options = CommandParseOptions()
+    if(options === null) {
+        return
+    }
+
     const { config, rpc } = options
 
     // call rpc `createwallet` method

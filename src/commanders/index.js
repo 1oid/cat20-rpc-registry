@@ -4,10 +4,10 @@ export function CommandParseOptions() {
     program
         .description('Fractal-Bitcoin wallet register')
         .version('0.0.1')
-        .option('-n, --name [Wallet name]', '--name')
-        .option('-w, --wallet [Wallet address]', '--wallet')
-        .option('-r, --rpc [RPC Node IP]', '--rpc')
-        .option('-c, --config [Generate config Enable]', '--config', false)
+        .option('-n, --name [Wallet name]', 'wallet name')
+        .option('-w, --wallet [Wallet address]', 'wallet address')
+        .option('-r, --rpc [RPC Node IP]', 'rpc node ip only')
+        .option('-c, --config [Generate config Enable]', 'config generate', false)
         .parse(process.argv);
     program.parse();
 
@@ -15,17 +15,18 @@ export function CommandParseOptions() {
 
     try {
         validateRequireOptionsNotNull(options)
+
+        return {
+            name: options.name,
+            wallet: options.wallet,
+            rpc: options.rpc,
+            config: options.config,
+        }
     }catch (e) {
         console.log('Error', e.message)
         program.outputHelp()
     }
-
-    return {
-        name: options.name,
-        wallet: options.wallet,
-        rpc: options.rpc,
-        config: options.config,
-    }
+    return null
 }
 
 function validateRequireOptionsNotNull({ name, wallet, rpc }) {
