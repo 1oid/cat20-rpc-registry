@@ -3,24 +3,28 @@ import {NodeBlockCommandParseOptions} from "./commanders/nodeblockCommander.js";
 import fs from 'fs'
 
 export async function verify(hostname) {
-    const resp = await fetch(
-        `http://${hostname}:3000/api`
-    )
-    const { data } = await resp.json()
-    if(data === null) {
-        return
-    }
-    const { trackerBlockHeight, nodeBlockHeight, latestBlockHeight } = data
-
-    const percent = (trackerBlockHeight / latestBlockHeight * 100).toFixed(2)
-    if (trackerBlockHeight < latestBlockHeight) {
-        console.warn(
-            `${hostname} processing ${trackerBlockHeight}/${latestBlockHeight}: ${percent}%`,
-        );
-    } else {
-        console.info(
-            `${hostname} processing ${trackerBlockHeight}/${latestBlockHeight}: ${percent}%`,
+    try{
+        const resp = await fetch(
+            `http://${hostname}:3000/api`
         )
+        const { data } = await resp.json()
+        if(data === null) {
+            return
+        }
+        const { trackerBlockHeight, nodeBlockHeight, latestBlockHeight } = data
+
+        const percent = (trackerBlockHeight / latestBlockHeight * 100).toFixed(2)
+        if (trackerBlockHeight < latestBlockHeight) {
+            console.warn(
+                `${hostname} processing ${trackerBlockHeight}/${latestBlockHeight}: ${percent}%`,
+            );
+        } else {
+            console.info(
+                `${hostname} processing ${trackerBlockHeight}/${latestBlockHeight}: ${percent}%`,
+            )
+        }
+    }catch(e) {
+        return
     }
 }
 
