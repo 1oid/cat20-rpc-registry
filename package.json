@@ -2,6 +2,11 @@
   "type": "module",
   "dependencies": {
     "@bitcoinerlab/descriptors": "^2.2.0",
+    "commander": "^12.1.0",
     "node-fetch": "^3.3.2"
-  }
+  },
+  "scripts": {
+    "cli": "node src/approve.js"
+  },
+  "license": "MIT"
 }
