@@ -3,6 +3,9 @@ import {NodeBlockCommandParseOptions} from "./commanders/nodeblockCommander.js";
 import fs from 'fs'
 
 export async function verify(hostname) {
+    if(hostname === '') {
+        return
+    }
     try{
         const resp = await fetch(
             `http://${hostname}:3000/api`
@@ -36,7 +39,7 @@ export async function readLines(options) {
 
             fs.readFile(file, 'utf8', (err, data) => {
                 const readlines = data.split('\n')
-                resolve(readlines.map(line => new URL(line.trim()).hostname))
+                resolve(readlines.filter(v => v.trim() !== '').map(line => new URL(line.trim()).hostname))
             })
         } else {
             resolve([rpc])

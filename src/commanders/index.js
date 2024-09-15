@@ -35,9 +35,9 @@ function validateRequireOptionsNotNull({ name, wallet, rpc }) {
         throw new Error('options has null value')
     }
 
-    if(name.indexOf('cat') === -1) {
-        throw new Error('name is not valid format. Example: cat-xxx')
-    }
+    // if(name.indexOf('cat') === -1) {
+    //     throw new Error('name is not valid format. Example: cat-xxx')
+    // }
 
     if(wallet.indexOf('bc1p') === -1) {
         throw new Error('wallet format is not support. Example: bc1p......')
